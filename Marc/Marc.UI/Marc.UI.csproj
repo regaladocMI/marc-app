@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Marc.Core\Marc.Core.csproj" />
     <ProjectReference Include="..\Marc.Data\Marc.Data.csproj" />
+    <ProjectReference Include="..\Marc.Servicios\Marc.Servicios.csproj" />
   </ItemGroup>
 
   <ItemGroup>

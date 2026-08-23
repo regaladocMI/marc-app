@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Marc.Core/Marc.Core.csproj" />
   <Project Path="Marc.Data/Marc.Data.csproj" />
+  <Project Path="Marc.Servicios/Marc.Servicios.csproj" />
   <Project Path="Marc.UI/Marc.UI.csproj" />
 </Solution>

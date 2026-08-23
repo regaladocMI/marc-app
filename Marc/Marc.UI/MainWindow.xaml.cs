@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Marc.Core;
+using Marc.Servicios;
 
 namespace Marc.UI
 {
@@ -25,5 +27,20 @@ namespace Marc.UI
         {
             ContenedorPrincipal.Content = new TemasView();
         }
+
+        private async void BtnProbarMicrofono_Click(object sender, RoutedEventArgs e)
+        {
+            ITranscriptorVoz transcriptor = new TranscriptorAzure();
+
+            MessageBox.Show("Hablá algo en ingles ahora. Cuando dejes de hablar, se corta solo.");
+
+            string textoTranscrito = await transcriptor.EscucharYTranscribirAsync();
+
+            MessageBox.Show(string.IsNullOrEmpty(textoTranscrito)
+                ? "No se detecto ninguna frase."
+                : $"Transcripcion: {textoTranscrito}");
+        }
     }
+
+
 }
