@@ -20,5 +20,10 @@ namespace Marc.UI
         {
             InitializeComponent();
         }
+
+        private void BtnTemas_Click(object sender, RoutedEventArgs e)
+        {
+            ContenedorPrincipal.Content = new TemasView();
+        }
     }
 }

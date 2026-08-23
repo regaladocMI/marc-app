@@ -12,11 +12,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="9" Background="#1E1E1E" Padding="16">
-            <TextBlock Text="MARC"
-                       FontSize="22"
-                       FontWeight="Bold"
-                       Foreground="White" />
+        <Border Grid.Row="0" Background="#1E1E1E" Padding="16">
+            <DockPanel>
+                <TextBlock Text="MARC" FontSize="22" FontWeight="Bold" Foreground="White" />
+                <Button Content="Temas" HorizontalAlignment="Right" Padding="12,4" Click="BtnTemas_Click" />
+            </DockPanel>
         </Border>
 
         <ContentControl x:Name="ContenedorPrincipal"

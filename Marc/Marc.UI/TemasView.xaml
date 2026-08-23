@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Marc.UI.TemasView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Lista de temas -->
+        <StackPanel Grid.Column="0" Margin="0,0,16,0">
+            <TextBlock Text="Mis temas" FontWeight="Bold" Margin="0,0,0,8" />
+            <CheckBox x:Name="ChkMostrarInactivos"
+          Content="Mostrar inactivos"
+          Margin="0,0,0,8"
+          Checked="ChkMostrarInactivos_Changed"
+          Unchecked="ChkMostrarInactivos_Changed" />
+            <ListBox x:Name="ListaTemas"
+                     Height="400"
+                     DisplayMemberPath="Nombre"
+                     SelectionChanged="ListaTemas_SelectionChanged" />
+            <Button x:Name="BtnNuevo" Content="Nuevo tema" Margin="0,8,0,0" Click="BtnNuevo_Click" />
+        </StackPanel>
+
+        <!-- Formulario -->
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Nombre" />
+            <TextBox x:Name="TxtNombre" Margin="0,0,0,8" />
+
+            <TextBlock Text="Nivel de ingles" />
+            <ComboBox x:Name="CmbNivel"
+                      DisplayMemberPath="Descripcion"
+                      SelectedValuePath="IdNivelIngles"
+                      Margin="0,0,0,8" />
+
+            <TextBlock Text="Prompt base (instrucciones para el tutor)" />
+            <TextBox x:Name="TxtPromptBase"
+                     Height="120"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Margin="0,0,0,8" />
+
+            <CheckBox x:Name="ChkActivo" Content="Activo" Margin="0,0,0,16" />
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="BtnGuardar" Content="Guardar" Width="100" Margin="0,0,8,0" Click="BtnGuardar_Click" />
+                <Button x:Name="BtnEliminar" Content="Eliminar" Width="100" Click="BtnEliminar_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+</UserControl>
