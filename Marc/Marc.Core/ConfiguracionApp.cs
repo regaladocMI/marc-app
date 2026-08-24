@@ -39,4 +39,7 @@ public static class ConfiguracionApp
 
     public static string ObtenerAzureSpeechRegion()
         => ObtenerRaizJson().GetProperty("Azure").GetProperty("SpeechRegion").GetString()!;
+
+    public static string ObtenerGeminiApiKey()
+    => ObtenerRaizJson().GetProperty("Gemini").GetProperty("ApiKey").GetString()!;
 }

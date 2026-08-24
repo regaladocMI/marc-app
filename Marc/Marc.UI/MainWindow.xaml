@@ -15,7 +15,7 @@
         <Border Grid.Row="0" Background="#1E1E1E" Padding="16">
             <DockPanel>
                 <TextBlock Text="MARC" FontSize="22" FontWeight="Bold" Foreground="White" />
-                <Button Content="Probar microfono" HorizontalAlignment="Right" Padding="12,4" Margin="0,0,8,0" Click="BtnProbarMicrofono_Click" />
+                <Button x:Name="BtnProbarMicrofono" Content="Probar microfono" HorizontalAlignment="Right" Padding="12,4" Margin="0,0,8,0" Click="BtnProbarMicrofono_Click" />
                 <Button Content="Temas" HorizontalAlignment="Right" Padding="12,4" Click="BtnTemas_Click" />
             </DockPanel>
         </Border>
