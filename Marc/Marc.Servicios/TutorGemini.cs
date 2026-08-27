@@ -6,8 +6,7 @@ namespace Marc.Servicios;
 
 public class TutorGemini : ITutorIA
 {
-    private readonly HttpClient _http = new();
-
+    private readonly HttpClient _http = new() { Timeout = TimeSpan.FromSeconds(10) };
     public async Task<RespuestaTutor> ObtenerRespuestaAsync(
     string nombreUsuario,
     string nivelIngles,
@@ -16,7 +15,7 @@ public class TutorGemini : ITutorIA
     List<(string Autor, string Texto)> historialConversacion,
     string mensajeUsuario)
     {
-        string instruccionSistema = ConstruirInstruccionSistema(nombreUsuario, nivelIngles, nombreTema, promptBaseTema);
+        string instruccionSistema = ConstructorPromptAda.Construir(nombreUsuario, nivelIngles, nombreTema, promptBaseTema);
 
         var contenidos = new List<object>();
 
@@ -42,9 +41,7 @@ public class TutorGemini : ITutorIA
             generationConfig = new { responseMimeType = "application/json" }
         };
 
-        string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={ConfiguracionApp.ObtenerGeminiApiKey()}";
-
-        string textoRespuesta = await LlamarConReintentosAsync(url, cuerpoSolicitud);
+        string url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={ConfiguracionApp.ObtenerGeminiApiKey()}"; string textoRespuesta = await LlamarConReintentosAsync(url, cuerpoSolicitud);
 
         using JsonDocument documento = JsonDocument.Parse(textoRespuesta);
         string jsonDeAda = documento.RootElement

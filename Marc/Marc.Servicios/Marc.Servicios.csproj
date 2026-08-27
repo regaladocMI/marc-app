@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Marc.Core\Marc.Core.csproj" />
+    <ProjectReference Include="..\Marc.Data\Marc.Data.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

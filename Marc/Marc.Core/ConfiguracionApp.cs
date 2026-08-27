@@ -42,4 +42,7 @@ public static class ConfiguracionApp
 
     public static string ObtenerGeminiApiKey()
     => ObtenerRaizJson().GetProperty("Gemini").GetProperty("ApiKey").GetString()!;
+
+    public static string ObtenerGroqApiKey()
+    => ObtenerRaizJson().GetProperty("Groq").GetProperty("ApiKey").GetString()!;
 }
