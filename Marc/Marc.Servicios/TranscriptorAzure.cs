@@ -12,10 +12,15 @@ public class TranscriptorAzure : ITranscriptorVoz
             ConfiguracionApp.ObtenerAzureSpeechKey(),
             ConfiguracionApp.ObtenerAzureSpeechRegion());
 
-        configuracion.SpeechRecognitionLanguage = "en-US";
+        configuracion.SetProperty(
+            PropertyId.Speech_SegmentationSilenceTimeoutMs,
+            (ConfiguracionConversacion.PacienciaSegundos * 1000).ToString());
+
+        var deteccionIdioma = AutoDetectSourceLanguageConfig.FromLanguages(new[] { "en-US", "es-PE" });
 
         using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
-        using var reconocedor = new SpeechRecognizer(configuracion, audioConfig);
+        using var reconocedor = new SpeechRecognizer(configuracion, deteccionIdioma, audioConfig);
+
 
         SpeechRecognitionResult resultado = await reconocedor.RecognizeOnceAsync();
 
@@ -35,5 +40,3 @@ public class TranscriptorAzure : ITranscriptorVoz
             $"Cancelado. Razon: {detalle.Reason}. ErrorCode: {detalle.ErrorCode}. Detalle: {detalle.ErrorDetails}");
     }
 }
-
-

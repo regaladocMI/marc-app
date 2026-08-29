@@ -2,5 +2,5 @@
 
 public interface ISintetizadorVoz
 {
-    Task ReproducirAsync(string texto);
+    Task ReproducirAsync(string texto, Action<string>? alPronunciarPalabra = null);
 }

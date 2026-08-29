@@ -87,17 +87,25 @@ public class GestorConversacion
         }
     }
 
-    public async Task<ResultadoTurno?> EjecutarTurnoAsync()
+    public async Task<ResultadoTurno?> EjecutarTurnoAsync(
+    Action<string>? alTranscribirUsuario = null,
+    Action<int>? alConocerPuntaje = null,
+    Action<string>? alPronunciarPalabra = null)
     {
         string textoUsuario = await _transcriptor.EscucharYTranscribirAsync();
 
         if (string.IsNullOrWhiteSpace(textoUsuario))
             return null;
 
+        alTranscribirUsuario?.Invoke(textoUsuario);
+
         int idMensajeUsuario = _mensajeRepository.Insertar(
             IdSesion, MensajeRepository.ID_TIPO_EMISOR_USUARIO, textoUsuario, _siguienteOrden++, puntaje: null);
 
         var (respuesta, proveedorUsado) = await ObtenerRespuestaConRespaldoAsync(textoUsuario);
+        respuesta.Puntaje = Math.Clamp(respuesta.Puntaje, 1, 10);
+
+        alConocerPuntaje?.Invoke(respuesta.Puntaje);
 
         _historial.Add(("Usuario", textoUsuario));
         _historial.Add(("Tutor", respuesta.RespuestaTexto));
@@ -119,7 +127,7 @@ public class GestorConversacion
         foreach (var item in respuesta.VocabularioDetectado)
             _vocabularioRepository.GuardarSiNoExiste(item.PalabraOFrase, item.Significado);
 
-        await _sintetizador.ReproducirAsync(respuesta.RespuestaTexto);
+        await _sintetizador.ReproducirAsync(respuesta.RespuestaTexto, alPronunciarPalabra);
 
         return new ResultadoTurno { TextoUsuario = textoUsuario, RespuestaAda = respuesta, ProveedorUsado = proveedorUsado };
     }

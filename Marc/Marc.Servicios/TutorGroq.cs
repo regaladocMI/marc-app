@@ -6,7 +6,7 @@ namespace Marc.Servicios;
 
 public class TutorGroq : ITutorIA
 {
-    private readonly HttpClient _http = new() { Timeout = TimeSpan.FromSeconds(5) };
+    private readonly HttpClient _http = new() { Timeout = TimeSpan.FromSeconds(8) };
 
     public async Task<RespuestaTutor> ObtenerRespuestaAsync(
         string nombreUsuario,
