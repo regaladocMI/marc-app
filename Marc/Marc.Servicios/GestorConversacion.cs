@@ -125,7 +125,7 @@ public class GestorConversacion
         }
 
         foreach (var item in respuesta.VocabularioDetectado)
-            _vocabularioRepository.GuardarSiNoExiste(item.PalabraOFrase, item.Significado);
+            _vocabularioRepository.RegistrarOcurrencia(item.PalabraOFrase, item.Significado, idMensajeUsuario);
 
         await _sintetizador.ReproducirAsync(respuesta.RespuestaTexto, alPronunciarPalabra);
 

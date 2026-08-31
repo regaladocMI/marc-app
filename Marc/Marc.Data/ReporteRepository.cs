@@ -116,4 +116,30 @@ public class ReporteRepository
         return tabla;
     }
 
+    public DataTable ObtenerVocabularioCompleto()
+    {
+        using var conexion = new SqlConnection(ConfiguracionApp.ObtenerCadenaConexion());
+
+        const string sql = @"
+        SELECT
+            v.id_vocabulario AS IdVocabulario,
+            v.palabra_o_frase AS Palabra,
+            v.significado AS Significado,
+            COUNT(vo.id_vocabulario_ocurrencia) AS VecesRepetida,
+            v.fecha_creacion AS FechaCreacion
+        FROM marc.vocabulario v
+        LEFT JOIN marc.vocabulario_ocurrencia vo ON vo.id_vocabulario = v.id_vocabulario
+        WHERE v.id_usuario = @idUsuario
+        GROUP BY v.id_vocabulario, v.palabra_o_frase, v.significado, v.fecha_creacion
+        ORDER BY v.fecha_creacion DESC";
+
+        using var adaptador = new SqlDataAdapter(sql, conexion);
+        adaptador.SelectCommand.Parameters.AddWithValue("@idUsuario", ID_USUARIO_FIJO);
+
+        var tabla = new DataTable();
+        adaptador.Fill(tabla);
+
+        return tabla;
+    }
+
 }

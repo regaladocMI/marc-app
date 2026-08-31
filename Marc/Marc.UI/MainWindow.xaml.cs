@@ -56,5 +56,10 @@ namespace Marc.UI
         {
             ContenedorPrincipal.Content = new ReportesView();
         }
+
+        private void BtnVocabulario_Click(object sender, RoutedEventArgs e)
+        {
+            ContenedorPrincipal.Content = new VocabularioView();
+        }
     }
 }
