@@ -34,8 +34,6 @@ namespace Marc.UI
             ContenedorPrincipal.Content = new TemasView();
         }
 
-
-        private GestorConversacion? _gestorActual;
         private SesionRepository _sesionRepository = new();
 
 
@@ -47,6 +45,16 @@ namespace Marc.UI
         private void BtnPracticar_Click(object sender, RoutedEventArgs e)
         {
             ContenedorPrincipal.Content = new SeleccionTemaView();
+        }
+
+        private void BtnHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            ContenedorPrincipal.Content = new HistorialView();
+        }
+
+        private void BtnReportes_Click(object sender, RoutedEventArgs e)
+        {
+            ContenedorPrincipal.Content = new ReportesView();
         }
     }
 }

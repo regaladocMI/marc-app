@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Marc.UI.HistorialView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="Historial de sesiones"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Margin="0,0,0,16" />
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,16">
+            <TextBlock Text="Desde:" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <DatePicker x:Name="FechaDesde" Width="140" Margin="0,0,16,0" />
+
+            <TextBlock Text="Hasta:" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <DatePicker x:Name="FechaHasta" Width="140" Margin="0,0,16,0" />
+
+            <Button Content="Buscar" Padding="16,4" Click="BtnBuscar_Click" />
+        </StackPanel>
+
+        <DataGrid x:Name="GrillaSesiones"
+          Grid.Row="2"
+          AutoGenerateColumns="True"
+          IsReadOnly="True"
+          CanUserAddRows="False"
+          MouseDoubleClick="GrillaSesiones_MouseDoubleClick" />
+    </Grid>
+
+</UserControl>

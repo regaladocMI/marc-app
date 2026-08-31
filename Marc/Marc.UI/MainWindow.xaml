@@ -16,6 +16,8 @@
             <DockPanel>
                 <TextBlock Text="MARC" FontSize="22" FontWeight="Bold" Foreground="White" />
                 <Button Content="Temas" HorizontalAlignment="Right" Padding="12,4" Click="BtnTemas_Click" />
+                <Button Content="Historial" HorizontalAlignment="Right" Padding="12,4" Margin="0,0,8,0" Click="BtnHistorial_Click" />
+                <Button Content="Reportes" HorizontalAlignment="Right" Padding="12,4" Margin="0,0,8,0" Click="BtnReportes_Click" />
                 <Button Content="Practicar" HorizontalAlignment="Right" Padding="12,4" Margin="0,0,8,0" Click="BtnPracticar_Click" />
             </DockPanel>
         </Border>
