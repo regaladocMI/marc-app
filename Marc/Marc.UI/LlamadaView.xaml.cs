@@ -16,7 +16,6 @@ public partial class LlamadaView : UserControl
     public LlamadaView(Tema tema)
     {
         InitializeComponent();
-        MessageBox.Show($"Ensamblado Core (LlamadaView): {typeof(ConfiguracionConversacion).Assembly.Location}");
         _tema = tema;
         TxtNombreTema.Text = tema.Nombre;
 
